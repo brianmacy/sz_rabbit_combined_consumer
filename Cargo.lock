@@ -149,7 +149,7 @@ dependencies = [
  "nom 7.1.3",
  "num-traits",
  "rusticata-macros",
- "thiserror 2.0.19",
+ "thiserror",
  "time",
 ]
 
@@ -1414,7 +1414,7 @@ dependencies = [
  "ipnet",
  "jni",
  "rand",
- "thiserror 2.0.19",
+ "thiserror",
  "tinyvec",
  "tokio",
  "tracing",
@@ -1435,7 +1435,7 @@ dependencies = [
  "prefix-trie",
  "rand",
  "ring",
- "thiserror 2.0.19",
+ "thiserror",
  "tinyvec",
  "tracing",
  "url",
@@ -1462,7 +1462,7 @@ dependencies = [
  "resolv-conf",
  "smallvec",
  "system-configuration",
- "thiserror 2.0.19",
+ "thiserror",
  "tokio",
  "tracing",
 ]
@@ -1784,7 +1784,7 @@ dependencies = [
  "jni-sys",
  "log",
  "simd_cesu8",
- "thiserror 2.0.19",
+ "thiserror",
  "walkdir",
  "windows-link",
 ]
@@ -2103,7 +2103,7 @@ dependencies = [
  "rc2",
  "sha1",
  "sha2 0.10.9",
- "thiserror 2.0.19",
+ "thiserror",
  "x509-parser",
 ]
 
@@ -2793,15 +2793,15 @@ dependencies = [
 
 [[package]]
 name = "sz-rust-sdk"
-version = "0.1.0"
-source = "git+https://github.com/brianmacy/sz-rust-sdk?rev=b595ca4#b595ca48339288f47ae9d6fbb01005fef8cbb64b"
+version = "4.3.1"
+source = "git+https://github.com/brianmacy/sz-rust-sdk?tag=v4.3.1#b6be5cb1c8a2db77ba122b9e518e794c6baa76a1"
 dependencies = [
  "bitflags",
  "hex",
  "libc",
  "serde",
  "serde_json",
- "thiserror 1.0.69",
+ "thiserror",
 ]
 
 [[package]]
@@ -2857,31 +2857,11 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "1.0.69"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52"
-dependencies = [
- "thiserror-impl 1.0.69",
-]
-
-[[package]]
-name = "thiserror"
 version = "2.0.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "09a43598840e33d5b0331f38c5e30d13bb11c11210a4b58f0d9b18a5a5eefcd9"
 dependencies = [
- "thiserror-impl 2.0.19",
-]
-
-[[package]]
-name = "thiserror-impl"
-version = "1.0.69"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fee6c4efc90059e10f81e6d42c60a18f76588c3d74cb83a0b242a2b6c7504c1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.119",
+ "thiserror-impl",
 ]
 
 [[package]]
@@ -3428,7 +3408,7 @@ dependencies = [
  "nom 7.1.3",
  "oid-registry",
  "rusticata-macros",
- "thiserror 2.0.19",
+ "thiserror",
  "time",
 ]
 

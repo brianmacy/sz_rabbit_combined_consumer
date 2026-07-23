@@ -17,7 +17,7 @@ authors = ["Brian Macy"]
 license = "Apache-2.0"
 
 [workspace.dependencies]
-sz-rust-sdk = { git = "https://github.com/brianmacy/sz-rust-sdk", rev = "b595ca4" }
+sz-rust-sdk = { git = "https://github.com/brianmacy/sz-rust-sdk", tag = "v4.3.1" }
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "signal", "time"] }
 lapin = "4"
 futures-lite = "2"
