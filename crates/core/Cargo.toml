@@ -25,3 +25,7 @@ tracing.workspace = true
 tracing-subscriber.workspace = true
 ctrlc.workspace = true
 num_cpus.workspace = true
+# libc: `_exit(2)` for the wedged-teardown exit paths in runtime.rs. `std::process::exit`
+# runs libc atexit handlers / static destructors, which can BLOCK on a stuck native engine
+# thread — precisely the situation those paths exist to escape. See runtime.rs.
+libc.workspace = true

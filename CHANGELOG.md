@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased — forced exit paths can no longer be blocked by a wedged native thread (2026-07-27)
+
+* **`leak_and_exit` / the teardown-timeout path now use `libc::_exit(2)` instead of
+  `std::process::exit`.** `std::process::exit` calls libc `exit(3)`, which runs atexit
+  handlers and static destructors — and one of those can block on a lock held by a
+  Senzing/ODBC thread that is stuck mid-engine-call. That is *exactly* the condition
+  these "forced exit" paths exist to escape, so the one path that must never block was
+  the one using the one primitive that can.
+* **Observed in production 2026-07-27.** During a database restart, 17 of 20 consumers
+  on one host logged `skipping Senzing environment destroy … forcing process exit` and
+  then **never exited**. Because the process never terminated, Docker's
+  `RestartPolicy=on-failure` never fired: containers stayed `Up`, `RestartCount` stayed
+  flat, logs went silent, and the last-emitted stats blob kept reporting a healthy
+  `adds_rate`. The fleet ran at **57% capacity for 80 minutes** while every
+  container-level health check reported it healthy. The only observable was the host's
+  AMQP consumer count (3 instead of 20).
+* Intermittent by nature — it is a lock race. Other containers on the sibling host took
+  the identical code path in the same second and exited correctly.
+* The clean path (successful `Sz_destroy()`) still uses `std::process::exit`: nothing is
+  wedged there by definition, so running atexit handlers is safe and preferred.
+* `teardown_and_exit`'s doc comment already promised "GUARANTEEING a prompt exit …
+  regardless of whether `Sz_destroy()` / runtime drops would wedge". It now does.
+
 ## Unreleased — bump MSRV to 1.94.1 + modern AWS TLS (drops advisory ignores) (2026-07-21)
 
 * **MSRV `1.88` → `1.94.1`** (`rust-version`, CI toolchain pins, Dockerfile

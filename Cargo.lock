@@ -2783,6 +2783,7 @@ dependencies = [
  "anyhow",
  "clap",
  "ctrlc",
+ "libc",
  "num_cpus",
  "serde_json",
  "sz-rust-sdk",
